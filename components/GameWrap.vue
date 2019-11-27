@@ -41,6 +41,10 @@ export default {
     margin: 40px auto 0;
     text-align: center;
 
+    .game-board {
+        margin-top: 20px;
+    }
+
     .game-hand {
         margin-top: 40px;
     }
