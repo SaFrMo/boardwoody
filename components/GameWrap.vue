@@ -1,6 +1,6 @@
 <template>
     <client-only>
-        <section class="game-wrap" v-if="G">
+        <section class="game-wrap" v-if="ready">
             <!-- meta -->
             <section class="meta">
                 <h2>Score: {{ G.score }}</h2>
@@ -16,7 +16,17 @@
 </template>
 
 <script>
-export default {}
+export default {
+    data() {
+        return {
+            ready: false
+        }
+    },
+    async mounted() {
+        await this.$nextTick
+        this.ready = true
+    }
+}
 </script>
 
 <style lang="scss">
