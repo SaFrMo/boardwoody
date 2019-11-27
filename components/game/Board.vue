@@ -16,6 +16,9 @@ import { getCoordsFromIndex } from '~/lib/game/utils'
 export default {
     methods: {
         place(index) {
+            // ignore if no valid staged block
+            if (!this.G.hand[this.$store.state.stagedBlockIndex]) return
+
             this.$store.dispatch('PLAY_MOVE', {
                 move: 'playBlock',
                 options: {
