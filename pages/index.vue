@@ -8,8 +8,12 @@
 export default {}
 </script>
 
-<style>
+<style lang="scss">
 .home {
     margin-right: 300px;
+
+    button {
+        @include button-reset;
+    }
 }
 </style>

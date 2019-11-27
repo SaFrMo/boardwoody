@@ -5,7 +5,7 @@
             v-for="(cell, i) in G.grid"
             :key="i"
         >
-            <button @click="place(i)" />
+            <button @click="place(i)" class="placer" />
         </div>
     </section>
 </template>
@@ -19,7 +19,7 @@ export default {
             this.$store.dispatch('PLAY_MOVE', {
                 move: 'playBlock',
                 options: {
-                    blockIndex: 0, //this.$store.state.combat.playing,
+                    blockIndex: this.$store.state.stagedBlockIndex,
                     topLeft: getCoordsFromIndex(index)
                 }
             })
@@ -41,9 +41,16 @@ export default {
 
     .cell {
         background: var(--lighter-background);
+        position: relative;
 
         &.filled {
             background: var(--foreground);
+        }
+
+        .placer {
+            @include fill;
+            width: 100%;
+            height: 100%;
         }
     }
 }

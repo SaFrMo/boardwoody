@@ -1,10 +1,14 @@
 <template>
     <div class="single-block" :style="{ '--width': width, '--height': height }">
-        <div
-            v-for="(piece, i) in width * height"
-            :class="['piece', { filled: getPieceByIndex(i) }]"
-            :key="i"
-        />
+        <button @click="stageMe" class="selector">
+            <div class="piece-grid">
+                <div
+                    v-for="(piece, i) in width * height"
+                    :class="['piece', { filled: getPieceByIndex(i) }]"
+                    :key="i"
+                />
+            </div>
+        </button>
     </div>
 </template>
 
@@ -30,6 +34,9 @@ export default {
             const x = index % this.block[0].length
             const y = Math.floor(index / this.block[0].length)
             return this.block[y][x]
+        },
+        stageMe() {
+            this.$store.commit('STAGE_BLOCK', this.index)
         }
     }
 }
@@ -37,14 +44,16 @@ export default {
 
 <style lang="scss">
 .single-block {
-    display: grid;
-    grid-template-columns: repeat(var(--width), var(--side));
-    grid-template-rows: repeat(var(--height), var(--side));
-    grid-gap: var(--gap);
+    .piece-grid {
+        display: grid;
+        grid-template-columns: repeat(var(--width), var(--side));
+        grid-template-rows: repeat(var(--height), var(--side));
+        grid-gap: var(--gap);
 
-    .piece.filled {
-        background: var(--foreground);
-        box-sizing: border-box;
+        .piece.filled {
+            background: var(--foreground);
+            box-sizing: border-box;
+        }
     }
 }
 </style>

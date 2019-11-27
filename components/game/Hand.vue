@@ -1,7 +1,7 @@
 <template>
-    <ul class="game-hand ul-reset">
+    <ul class="game-hand">
         <li v-for="(block, i) in G.hand" :key="i" class="block-wrap">
-            <game-block :index="i" />
+            <game-block :index="i" v-if="block" />
         </li>
     </ul>
 </template>
