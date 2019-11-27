@@ -1,6 +1,10 @@
 <template>
     <client-only>
-        <section class="game-wrap" v-if="G">{{ G.grid }}</section>
+        <section class="game-wrap" v-if="G">
+            <!-- board -->
+            <!-- hand -->
+            <game-hand />
+        </section>
     </client-only>
 </template>
 

@@ -10,5 +10,6 @@ export default {}
 
 <style>
 .home {
+    margin-right: 300px;
 }
 </style>
