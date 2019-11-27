@@ -37,14 +37,13 @@ export default {
 
 <style lang="scss">
 .single-block {
-    --side: 25px;
     display: grid;
     grid-template-columns: repeat(var(--width), var(--side));
     grid-template-rows: repeat(var(--height), var(--side));
+    grid-gap: var(--gap);
 
     .piece.filled {
-        background: #ccc;
-        border: 2px solid black;
+        background: var(--medium);
         box-sizing: border-box;
     }
 }

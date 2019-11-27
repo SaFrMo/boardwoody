@@ -21,7 +21,7 @@ export default {}
     grid-column-gap: 20px;
 
     .block-wrap {
-        background: #dedede;
+        background: var(--light);
         width: 100%;
         height: 100%;
 
