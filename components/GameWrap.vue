@@ -1,8 +1,14 @@
 <template>
     <client-only>
         <section class="game-wrap" v-if="G">
+            <!-- meta -->
+            <section class="meta">
+                <h2>Score: {{ G.score }}</h2>
+            </section>
+
             <!-- board -->
             <game-board />
+
             <!-- hand -->
             <game-hand />
         </section>

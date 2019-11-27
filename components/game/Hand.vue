@@ -1,35 +1,58 @@
 <template>
-    <ul class="game-hand">
-        <li v-for="(block, i) in G.hand" :key="i" class="block-wrap">
-            <game-block :index="i" v-if="block" />
-        </li>
-    </ul>
+    <section class="game-hand-wrap">
+        <ul class="game-hand">
+            <li v-for="(block, i) in G.hand" :key="i" class="block-wrap">
+                <game-block :index="i" v-if="block" />
+            </li>
+        </ul>
+
+        <button @click="redraw" class="pass">Pass</button>
+    </section>
 </template>
 
 <script>
-export default {}
+export default {
+    methods: {
+        redraw() {
+            this.$store.dispatch('PLAY_MOVE', {
+                move: 'fillHand'
+            })
+        }
+    }
+}
 </script>
 
 <style lang="scss">
-.game-hand {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.game-hand-wrap {
+    margin-top: 20px;
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 20px;
+    .game-hand {
+        list-style: none;
+        padding: 0;
+        margin: 0;
 
-    .block-wrap {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 20px;
+
+        .block-wrap {
+            background: var(--background);
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    }
+
+    .pass {
+        margin-top: 20px;
         background: var(--background);
-        width: 100%;
-        height: 100%;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        box-sizing: border-box;
+        color: white;
+        padding: 10px;
     }
 }
 </style>
