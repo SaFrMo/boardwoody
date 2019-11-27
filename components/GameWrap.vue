@@ -17,8 +17,9 @@ export default {}
 .game-wrap {
     --side: 25px;
     --gap: 2px;
-    --light: #f1f1f1;
-    --medium: #dedede;
+    --background: #691100;
+    --lighter-background: #dedede;
+    --foreground: #b29d7c;
 
     max-width: 500px;
     margin: 40px auto 0;

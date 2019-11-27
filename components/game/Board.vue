@@ -18,13 +18,13 @@ export default {}
     grid-template: repeat(10, var(--side)) / repeat(10, var(--side));
     grid-gap: var(--gap);
     justify-content: center;
-    background: var(--light);
+    background: var(--background);
     margin: auto;
     padding: 20px;
     text-align: center;
 
     .cell {
-        background: var(--medium);
+        background: var(--lighter-background);
     }
 }
 </style>

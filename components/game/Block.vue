@@ -43,7 +43,7 @@ export default {
     grid-gap: var(--gap);
 
     .piece.filled {
-        background: var(--medium);
+        background: var(--foreground);
         box-sizing: border-box;
     }
 }
