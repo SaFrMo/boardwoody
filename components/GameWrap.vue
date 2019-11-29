@@ -22,9 +22,10 @@
 
 <script>
 import { getIndexFromCoords } from '~/lib/game/utils'
-import { throttle } from 'lodash'
 
-let throttled
+// THESE need to match --side and --gap css vars
+const side = 20
+const gap = 2
 
 export default {
     data() {
@@ -35,7 +36,6 @@ export default {
     async mounted() {
         await this.$nextTick
         this.ready = true
-        throttled = throttle(this.tryPlace, 16)
     },
     methods: {
         updateMouse(evt) {
@@ -46,9 +46,6 @@ export default {
                     y: touch.clientY
                 })
             }
-        },
-        throttledTryPlace() {
-            throttled()
         },
         tryPlace() {
             // get selected block
@@ -84,8 +81,6 @@ export default {
             const coords = Array(11)
                 .fill(0)
                 .map((e, i) => {
-                    const side = 25
-                    const gap = 2
                     const offset = (side + gap) / 2
                     return (side + gap) * i - offset
                 })
@@ -122,7 +117,7 @@ export default {
 
 <style lang="scss">
 .game-wrap {
-    --side: 25px;
+    --side: 20px;
     --gap: 2px;
     --background: #691100;
     --lighter-background: #dedede;
@@ -131,7 +126,7 @@ export default {
     touch-action: none;
     max-width: 500px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px 20px;
     text-align: center;
     min-height: 100vh;
     box-sizing: border-box;
