@@ -22,6 +22,9 @@
 
 <script>
 import { getIndexFromCoords } from '~/lib/game/utils'
+import { throttle } from 'lodash'
+
+let throttled
 
 export default {
     data() {
@@ -32,6 +35,7 @@ export default {
     async mounted() {
         await this.$nextTick
         this.ready = true
+        throttled = throttle(this.tryPlace, 16)
     },
     methods: {
         updateMouse(evt) {
@@ -42,6 +46,9 @@ export default {
                     y: touch.clientY
                 })
             }
+        },
+        throttledTryPlace() {
+            throttled()
         },
         tryPlace() {
             // get selected block
@@ -120,6 +127,7 @@ export default {
     --lighter-background: #dedede;
     --foreground: #b29d7c;
 
+    touch-action: none;
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
