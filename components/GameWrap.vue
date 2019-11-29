@@ -40,6 +40,7 @@ export default {
     methods: {
         updateMouse(evt) {
             if (evt.touches && evt.touches.length) {
+                evt.preventDefault()
                 const touch = evt.touches[0]
                 this.$store.commit('UPDATE_MOUSE', {
                     x: touch.clientX,
@@ -126,7 +127,7 @@ export default {
     touch-action: none;
     max-width: 500px;
     margin: 0 auto;
-    padding: 0 20px 20px;
+    padding: 20px;
     text-align: center;
     min-height: 100vh;
     box-sizing: border-box;
