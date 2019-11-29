@@ -57,6 +57,7 @@ export default {
             // cancel if no block
             if (!block) {
                 this.$store.commit('STAGE_BLOCK', -1)
+                return
             }
 
             // get top-left cell
