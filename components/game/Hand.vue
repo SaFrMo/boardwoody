@@ -33,6 +33,7 @@ export default {
 
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 150px;
         grid-column-gap: 20px;
 
         .block-wrap {

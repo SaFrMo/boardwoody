@@ -1,7 +1,13 @@
 <template>
     <div class="single-block" :style="{ '--width': width, '--height': height }">
-        <button @click="stageMe" class="selector">
-            <div class="piece-grid">
+        <button @touchstart="stageMe" class="selector">
+            <div
+                :class="[
+                    'piece-grid',
+                    { selected: $store.state.stagedBlockIndex == index }
+                ]"
+                :style="cmpStyle"
+            >
                 <div
                     v-for="(piece, i) in width * height"
                     :class="['piece', { filled: getPieceByIndex(i) }]"
@@ -27,6 +33,16 @@ export default {
         },
         area() {
             return this.height * this.width
+        },
+        cmpStyle() {
+            if (this.$store.state.stagedBlockIndex != this.index) {
+                return {}
+            }
+
+            return {
+                top: this.$store.state.mouseY + 'px',
+                left: this.$store.state.mouseX + 'px'
+            }
         }
     },
     methods: {
@@ -35,8 +51,16 @@ export default {
             const y = Math.floor(index / this.block[0].length)
             return this.block[y][x]
         },
-        stageMe() {
+        stageMe(evt) {
             this.$store.commit('STAGE_BLOCK', this.index)
+
+            if (evt.touches && evt.touches.length) {
+                const touch = evt.touches[0]
+                this.$store.commit('UPDATE_MOUSE', {
+                    x: touch.clientX,
+                    y: touch.clientY
+                })
+            }
         }
     }
 }
@@ -50,6 +74,11 @@ export default {
         grid-template-rows: repeat(var(--height), var(--side));
         grid-gap: var(--gap);
 
+        &.selected {
+            position: fixed;
+            transform: translate(-50%, -100%);
+            pointer-events: none;
+        }
         .piece.filled {
             background: var(--foreground);
             box-sizing: border-box;
